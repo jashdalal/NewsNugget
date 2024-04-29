@@ -58,5 +58,10 @@ def main():
     else:
         print("Failed to fetch news data.")
 
+def news_api(file_name: str):
+    # Fetch news using news API and return news if there is new news and None if there is no new news.
+    return None
+
+
 if __name__ == "__main__":
     main()

@@ -124,8 +124,36 @@ This is a list of things before running Flashfeed.
 
 1. Enter your API in `config.js`
    ```JS
-   const API_KEY = 'ENTER YOUR API';
+   const API_KEY = 'ENTER YOUR API KEY';
    ```
+
+### How to run?
+
+1. Set User Preferences
+   ```
+   To run the frontend-app
+   Open index.html in a browser. It is tightly binded with app.js which performs action on click of submit button
+
+   To run the backend-app
+   node server.js
+   
+   ```
+  
+2. Start Kafka Server
+   ``` 
+   bin/zookeeper-server-start.sh config/zookeeper.properties
+   bin/kafka-server-start.sh config/server.properties
+   ```
+
+3. News API Listener (Kafka Producer)
+    ```    
+    python producer.py
+    ```
+
+4. User Notification Generator (Kafka Consumer)
+    ```
+    python consumer.py
+    ```
 
 
 

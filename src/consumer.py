@@ -23,8 +23,8 @@ def send_email(file_name: str) -> str:
 def consume_news():
     for message in consumer:
         # Test line
-        print(message.value)
         news_file_name = message.value.decode('utf-8')
+        print(news_file_name)
         # Consume the news file name and process it by passing it to the function.
         # send_email(news_file_name)
         # scheduler(news_file_name)

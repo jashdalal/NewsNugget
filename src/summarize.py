@@ -31,8 +31,9 @@ def summarize_wrapper(news_json_file):
     # summary = 'Test Summary'
     news_json_data['results'][0]['summary'] = summary
     news_json_data = json.dumps(news_json_data, indent=4)
-    with open('summary.json', 'w') as fp:
+    with open(news_json_file, 'w') as fp:
         fp.write(news_json_data)
+    return news_json_file
 
 if __name__=="__main__":
     summarize_wrapper('../api_news/sample_data.json')

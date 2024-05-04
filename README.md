@@ -122,7 +122,7 @@ This is a list of things before running Flashfeed.
 
 ### Installation
 
-1. Enter your API in `config.js`
+1. Enter your API in config.js
    ```JS
    const API_KEY = 'ENTER YOUR API KEY';
    ```

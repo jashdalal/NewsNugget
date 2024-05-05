@@ -1,7 +1,7 @@
 import json
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf
-from pyspark.sql.types import StructType, StructField, StringType, ArrayType, IntegerType, TimestampType
+from pyspark.sql.types import StructType, StructField, StringType, ArrayType, IntegerType
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 
@@ -73,17 +73,16 @@ def summarize_wrapper(file_path):
     # Show the DataFrame
     # df.show(truncate=False)
     df.select("summary").show(truncate=False)
+    
+    output_file_path = "src/summarized_data.json"
+    df_list = df.rdd.map(lambda row: row.asDict()).collect()
 
+    # Write the list of dictionaries to a JSON file
+    with open(output_file_path, "w") as json_file:
+        json.dump(df_list, json_file, indent=2)
+    
     # Stop the SparkSession
     spark.stop()
-
-    # summary = summarize(news_article=news_content)
-    # # summary = 'Test Summary'
-    # news_json_data['results'][0]['summary'] = summary
-    # news_json_data = json.dumps(news_json_data, indent=4)
-    # with open(news_json_file, 'w') as fp:
-    #     fp.write(news_json_data)
-    # return news_json_file
 
 if __name__=="__main__":
     summarize_wrapper('src/sample_data.json')

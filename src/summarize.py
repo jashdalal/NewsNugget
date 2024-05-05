@@ -6,26 +6,49 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 
 def summarize(news_article: str):
-    # Read the news content parallely and summarize and add the summary to the file_name
+    """
+    Summarize the given news article using a pre-trained T5 model.
+    
+    Args:
+        news_article (str): The news article to be summarized.
+        
+    Returns:
+        str: The summarized version of the news article.
+    """
 
+    # Prompt to be used for LLM summarization purpose
     prompt = f"Summarize the below news article in about 50 words. Highlight the major takeaways from the article : {news_article}"
     
+    # Load pre-trained T5 model and tokenizer
     model_name = "google/flan-t5-base"
     model = AutoModelForSeq2SeqLM.from_pretrained(
         model_name
     ).to("cpu")
-
     tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side="right")
 
+    # Tokenize the prompt
     model_inputs = tokenizer([prompt], return_tensors="pt").to("cpu")
 
+    # Generate summary using the model
     generated_ids = model.generate(**model_inputs, max_new_tokens=100, num_beams=1, no_repeat_ngram_size=2, top_k=50, top_p=0.95, temperature=0.7)
     output = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
 
+    # Extract and return the summary
     summary = output[0]
     return summary
 
 def summarize_wrapper(file_path):
+    """
+    Read news articles from a JSON file, summarize them, and store the summarized data in a JSON file.
+    
+    Args:
+        file_path (str): The path to the input JSON file containing news data.
+        
+    Returns:
+        None
+    """
+    
+    # Read news data from JSON file
     file_reader = open(file_path)
     news_data_json = json.load(file_reader)
     news_data = news_data_json['results']
@@ -61,7 +84,6 @@ def summarize_wrapper(file_path):
     ])
     
     # Create a DataFrame from the array of JSON objects
-    # df = spark.createDataFrame(news_data)
     df = spark.createDataFrame(news_data, schema)
 
     # Register the custom function as a UDF (User Defined Function)
@@ -71,9 +93,9 @@ def summarize_wrapper(file_path):
     df = df.withColumn("summary", custom_function_udf(df["content"]))
 
     # Show the DataFrame
-    # df.show(truncate=False)
-    df.select("summary").show(truncate=False)
+    # df.select("summary").show(truncate=False)
     
+    # Store DataFrame data in JSON file
     output_file_path = "src/summarized_data.json"
     df_list = df.rdd.map(lambda row: row.asDict()).collect()
 

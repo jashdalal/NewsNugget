@@ -132,7 +132,9 @@ This is a list of things before running Flashfeed.
 1. Set User Preferences
    ```
    To run the frontend-app
-   Open index.html in a browser. It is tightly binded with app.js which performs action on click of submit button
+   npm install -g http-server
+   http-server -c-1
+   Run http://127.0.0.1:8080
 
    To run the backend-app
    node server.js

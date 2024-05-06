@@ -78,9 +78,9 @@ To get a local copy up and running follow these simple example steps.
 This is a list of things before running NewsNugget.
 1. Git clone
    ```
-   git clone https://github.com/jashdalal/NewsNugget
+   git clone https://github.com/jashdalal/NewsNugget.git
    ```
-2. Install node from [https://nodejs.org/en/](https://nodejs.org/en/)
+2. Install [node](https://nodejs.org/en/)
 3. Install NPM packages
    ```sh
    cd user_preference
@@ -90,11 +90,16 @@ This is a list of things before running NewsNugget.
    npm install -g http-server
    npm install cors
    ```
-4. Install python from [https://www.python.org/]
+4. Install [python](https://www.python.org/)
 5. Install python packages
    ```
    cd ../src
    pip install -r requirements.txt
+   ```
+6. Install [mongodb](https://www.mongodb.com/docs/v2.6/tutorial/install-mongodb-on-linux/)
+7. Start mongodb service
+   ```
+   sudo systemctl start mongodb.service
    ```
 
 ### Execution

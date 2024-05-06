@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/jashdalal/NewsNugget">
-    <img src="images/logo.png" alt="Logo" width="150" height="150">
+    <img src="images/logo.png" alt="Logo" width="250" height="200">
   </a>
 
   <h3 align="center">News Nugget</h3>

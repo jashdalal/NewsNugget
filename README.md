@@ -116,8 +116,8 @@ This is a list of things before running NewsNugget.
    ```
 2. Start Kafka Server
    ``` 
-   bin/zookeeper-server-start.sh config/zookeeper.properties
-   bin/kafka-server-start.sh config/server.properties
+   bin/zookeeper-server-start.sh config/zookeeper.properties &
+   bin/kafka-server-start.sh config/server.properties &
    ```
 3. News API Listener (Kafka Producer)
     ```    

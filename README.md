@@ -147,5 +147,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 1. Jash Mitesh Dalal - [@jmdalal](https://www.linkedin.com/in/jmdalal/) - jdalal@umass.edu
 2. Dhrumeen Patel - [@dhrumeenpatel](https://www.linkedin.com/in/dhrumeenpatel/) - dhrumeenkish@umass.edu
 3. Poojitha Penta - [@poojithapenta](https://www.linkedin.com/in/poojithapenta/) - ppenta@umass.edu
-4. Jash Mitesh Dalal - [@sahilgupta17](https://www.linkedin.com/in/sahilgupta17/) - sahgupta@umass.edu
+4. Sahil Gupta - [@sahilgupta17](https://www.linkedin.com/in/sahilgupta17/) - sahgupta@umass.edu
 

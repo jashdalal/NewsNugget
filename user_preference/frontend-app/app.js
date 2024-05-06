@@ -20,7 +20,6 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         alert('Form submitted successfully!');
     })
     .catch(error => {
-        console.error('Error submitting form:', error);
-        alert('Error submitting form. Please try again.');
+        alert(error);
     });
 });

@@ -105,12 +105,12 @@ This is a list of things before running NewsNugget.
 ### Execution
 
 1. Set User Preferences
-  1.1 To run the frontend-app
+   1.1 To run the frontend-app
    ```
    http-server -c-1
    Run http://127.0.0.1:8080
    ```
-  1.2 To run the backend-app
+   1.2 To run the backend-app
    ```
    node server.js
    ```

@@ -65,6 +65,7 @@ This section should list any major frameworks that you built your project using.
 * Kafka
 * Flan-T5 Model
 * REST APIs
+* Fedora (Linux VM)
 
 
 <!-- GETTING STARTED -->
@@ -74,45 +75,53 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is a list of things before running Flashfeed.
-1. Install node from [https://nodejs.org/en/](https://nodejs.org/en/)
-2. Install NPM packages
+This is a list of things before running NewsNugget.
+1. Git clone
+   ```
+   git clone https://github.com/jashdalal/NewsNugget
+   ```
+2. Install node from [https://nodejs.org/en/](https://nodejs.org/en/)
+3. Install NPM packages
    ```sh
+   cd user_preference
    npm init -y
    npm install express body-parser mongoose
    npm install express body-parser --save
+   npm install -g http-server
+   npm install cors
+   ```
+4. Install python from [https://www.python.org/]
+5. Install python packages
+   ```
+   cd ../src
+   pip install -r requirements.txt
    ```
 
 ### Execution
 
 1. Set User Preferences
+  1.1 To run the frontend-app
    ```
-   To run the frontend-app
-   npm install -g http-server
    http-server -c-1
    Run http://127.0.0.1:8080
-
-   To run the backend-app
-   node server.js
-   
    ```
-  
+  1.2 To run the backend-app
+   ```
+   node server.js
+   ```
 2. Start Kafka Server
    ``` 
    bin/zookeeper-server-start.sh config/zookeeper.properties
    bin/kafka-server-start.sh config/server.properties
    ```
-
 3. News API Listener (Kafka Producer)
     ```    
     python producer.py
     ```
-
 4. User Notification Generator (Kafka Consumer)
     ```
     python consumer.py
     ```
-
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -120,11 +129,10 @@ This is a list of things before running Flashfeed.
 See the [open issues](https://github.com/jashdalal/NewsNugget/issues) for a list of proposed features (and known issues).
 
 
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)

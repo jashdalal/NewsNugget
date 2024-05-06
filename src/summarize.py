@@ -1,3 +1,4 @@
+"""Summarization code"""
 import json
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf
@@ -22,9 +23,9 @@ def summarize(news_article: str):
     # Load pre-trained T5 model and tokenizer
     model_name = "google/flan-t5-base"
     model = AutoModelForSeq2SeqLM.from_pretrained(
-        model_name
+        model_name, cache_dir='models'
     ).to("cpu")
-    tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side="right")
+    tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side="right", cache_dir='models')
 
     # Tokenize the prompt
     model_inputs = tokenizer([prompt], return_tensors="pt").to("cpu")
@@ -45,7 +46,7 @@ def summarize_wrapper(file_path):
         file_path (str): The path to the input JSON file containing news data.
         
     Returns:
-        None
+        JSON file name containing article details and the summary
     """
     
     # Read news data from JSON file
@@ -96,7 +97,7 @@ def summarize_wrapper(file_path):
     # df.select("summary").show(truncate=False)
     
     # Store DataFrame data in JSON file
-    output_file_path = "src/summarized_data.json"
+    output_file_path = "summarized_data.json"
     df_list = df.rdd.map(lambda row: row.asDict()).collect()
 
     # Write the list of dictionaries to a JSON file
@@ -105,6 +106,8 @@ def summarize_wrapper(file_path):
     
     # Stop the SparkSession
     spark.stop()
+
+    return output_file_path
 
 if __name__=="__main__":
     summarize_wrapper('src/sample_data.json')

@@ -1,12 +1,24 @@
+"""Fetch News"""
 import json
 import requests
 
-def fetch_news(api_key = 'pub_4128925dfa2a70c562b279e6cda7553c93e46', query = 'bollywood', language = 'en'):
+def fetch_news(api_key = 'pub_4128925dfa2a70c562b279e6cda7553c93e46', language = 'en'):
+    """Fetch news using the newsdata.io API
+
+    Args:
+        api_key (str) : newsdata.io API keys. Default is pub_4128925dfa2a70c562b279e6cda7553c93e46
+        language (en) : Language of the fetched news article. Default is English
+
+    Returns:
+        dict: JSON Dict if fetch news article was successful else
+        None: If news API returned an error.
+    """
     url = f'https://newsdata.io/api/1/news'
     params = {
         'apikey': api_key,
-        'q': query,
-        'language': language
+        'country': 'us',
+        'language': language,
+        'size': 10  # Number of news article per API hit can between 1 to 50.
     }
 
     try:
@@ -25,6 +37,15 @@ def fetch_news(api_key = 'pub_4128925dfa2a70c562b279e6cda7553c93e46', query = 'b
         return None
 
 def news_api(file_name: str):
+    """Fetch News data dict and write it to JSON file
+
+    Args:
+        file_name (str) : JSON file name where the news data dict should be stored
+
+    Returns:
+        str: JSON file_name if fetch news article was successful else
+        None: If news API returned an error.
+    """
     # Fetch news articles
     news_data = fetch_news()
 
@@ -45,6 +66,8 @@ def news_api(file_name: str):
         news_json = json.dumps(news_data, indent=4)
         with open(file_name, 'w') as fp:
             fp.write(news_json)
+
+        return file_name
 
     else:
         print("Failed to fetch news data.")

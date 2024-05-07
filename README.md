@@ -12,7 +12,7 @@
     <br />
     <br />
     <br />
-    <a href="https://github.com/jashdalal/NewsNugget/blob/master/README.md">View Demo</a>
+    <a href="https://www.youtube.com/watch?v=0Ckc3kCLS6o">View Demo</a>
     ·
     <a href="https://github.com/jashdalal/NewsNugget/issues">Report Bug</a>
     ·

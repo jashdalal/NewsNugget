@@ -127,6 +127,13 @@ This is a list of things before running NewsNugget.
     ```
     python consumer.py
     ```
+5. Run tests
+   Negative test cases - Email and preference validation can be verified
+   Positive test case - Run the app with email ID and preferences to receive email
+   Change script in index.html from app.js to test.js and run the test cases using
+   ```
+   node app.js
+   ```
 
 <!-- ROADMAP -->
 ## Roadmap

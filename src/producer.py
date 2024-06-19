@@ -11,7 +11,12 @@ from kafka import KafkaProducer
 from fetch_news import news_api
 from summarize import *
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092')
+# Local server name. At line 19 replace docker_kafka
+local_server = 'localhost'
+# Replace local_server on line 19 with docker_kafka when running on docker
+docker_kafka = 'kafka'
+
+producer = KafkaProducer(bootstrap_servers=f'{docker_kafka}:9092')
 news_json_file = "news_json_file_{}.json"
 
 def news() -> str:

@@ -1,5 +1,9 @@
 kafka-python
 pyspark
 schedule
+six
+supervisor
 torch
+torchvision
+torchaudio
 transformers

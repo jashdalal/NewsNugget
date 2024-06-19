@@ -1,3 +1,5 @@
+const backendLocalUrl = "http://localhost:3000/submit"
+
 document.getElementById('userForm').addEventListener('submit', function(event) {
     const formData = new FormData(this);
     const preferences = formData.getAll('preferences');
@@ -7,7 +9,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
     };
     console.log(userData);
 
-    fetch('http://localhost:3000/submit', {
+    fetch(backendLocalUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

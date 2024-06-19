@@ -60,6 +60,7 @@ def send_email(file_name: str, user_preferences_file : str):
     user_preferences_data = json.load(s)
   user_emails= [entry['email'] for entry in user_preferences_data]
   user_preferences= [entry['preferences'] for entry in  user_preferences_data]
+  user_preferences[0].append('top') # Just in case there API isn't premium one
 
   # Retrieve Title , URL, SUMMARY based on user preferences
   number_of_users=len(user_emails)

@@ -135,6 +135,18 @@ This is a list of things before running NewsNugget.
    node app.js
    ```
 
+### Running on docker:
+    ```
+    docker-compose build --no-cache
+    docker-compose up
+    ```
+
+### Docker Clean up:
+    ```
+    docker-compose down
+    docker system prune --all --force
+    ```
+
 <!-- ROADMAP -->
 ## Roadmap
 

@@ -6,8 +6,13 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//MongoDB connection string to use when running locally (line 15)
+const MongoDBLocalConnection = "mongodb://localhost/userData"
+//MongoDB connection string to use when running on docker (line 15)
+const monogoDBConnection = "mongodb://mongo/userData"
+
 // MongoDB connection
-mongoose.connect('mongodb://localhost/userData', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(monogoDBConnection, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -26,6 +31,10 @@ app.use(cors());
 // Routes
 app.post('/submit', (req, res) => {
     const userData = new UserData(req.body);
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    if (req.headers.origin && ['http://localhost:3000', 'http://localhost:3001'].includes(req.headers.origin)) {
+        res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    }
     userData.save()
         .then(() => {
             console.log("Data saved successfully", userData);

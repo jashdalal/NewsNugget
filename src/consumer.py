@@ -12,9 +12,15 @@ from kafka import KafkaConsumer
 
 from email_newsletter import send_email
 
+# Local server name. At line 22 replace docker_kafka and at line 31 replace docker_mongo_db when running locally
+local_server = 'localhost'
+# Replace local_server on line 22 and line 31 when running on docker
+docker_monogo_db = 'backend'
+docker_kafka = 'kafka'
+
 # Initialize Kafka Consumer
 consumer = KafkaConsumer(
-    'news_topic', bootstrap_servers='localhost:9092', auto_offset_reset='earliest')
+    'news_topic', bootstrap_servers=f'{docker_kafka}:9092', auto_offset_reset='earliest')
 user_preference_file = 'preferences.json'  # JSON file name to store user preference
 
 def user_preference_getter() -> str:
@@ -23,7 +29,7 @@ def user_preference_getter() -> str:
     Returns:
         User preference JSON file name
     """
-    userdata = requests.get("http://localhost:3000/userData")
+    userdata = requests.get(f"http://{docker_monogo_db}:3000/userData")
     userdata = json.dumps(userdata.json())
     with open(user_preference_file, 'w') as fp:
         fp.write(userdata)
@@ -53,4 +59,5 @@ def consume_news():
         time.sleep(10*60)
 
 if __name__ == "__main__":
+    time.sleep(5*60)  # Delay start of consumer script before the producer script is triggered.
     consume_news()
